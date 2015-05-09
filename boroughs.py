@@ -52,13 +52,27 @@ def get_score_summary(filename):
     return rest_boro
     fhandler.close()
 
-#print get_score_summary('inspection_results.csv')
 
-#get_market_density(filename):
-dictio = {}
-fhandler = json.load(open('green_markets.json'))
-dictio = dict((item['idssss'], item) for item in fhandler.iteritems())
-
-print dictio
-    
+def get_market_density(filename):
+    q = 0
+    m= 0
+    bk = 0
+    si = 0
+    bx = 0
+    dictio = {}
+    fhandler = json.load(open('green_markets.json'))
+    for items in fhandler[u'data']:
+        if items[8] == 'Queens':
+            q+=1
+        if items[8] == 'Manhattan':
+            m+=1
+        if items[8] == 'Brooklyn':
+            bk+=1
+        if items[8] == 'Staten Island':
+            si+=1
+        if items[8] == 'Bronx':
+            bx+=1
+    dicy = {'Queens': q, 'Manhattan':m,'Brooklyn':bk, 'Staten Island': si,'Bronx': bx}
+    return dicy
+ 
     
